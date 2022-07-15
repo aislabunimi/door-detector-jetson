@@ -55,7 +55,12 @@ setup(
     # Add here the package dependencies
     install_requires=[
         "torch",
-        "roslibpy"
+        "torchvision",
+        "scipy",
+        "roslibpy",
+        "pybase64",
+        "opencv-python",
+        "matplotlib"
     ],
     entry_points={
         'console_scripts': [],

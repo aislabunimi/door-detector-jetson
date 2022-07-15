@@ -1,3 +1,8 @@
+import torch
+import os
+from torch import nn
+
+
 class Model:
     def __init__(self):
         self._model = torch.hub.load('facebookresearch/detr', 'detr_resnet50', pretrained=False)
@@ -7,7 +12,7 @@ class Model:
         self._model.class_embed = nn.Linear(256, 3)
 
         trained_params = os.path.join(os.path.dirname(__file__), 'trained_params', 'model.pth')
-        self._model.load_state_dict(torch.load(trained_params))
+        self._model.load_state_dict(torch.load(trained_params, map_location=torch.device('cpu')))
 
 
         for p in [p for _, p in self._model.named_parameters()]:
